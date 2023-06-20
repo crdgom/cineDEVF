@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Seat from './seatsModels.js';
+import CinemaComplex from './cinemaComplexModels.js';
 
 const auditoriumSchema = new mongoose.Schema({
     name: {
@@ -22,10 +23,16 @@ const auditoriumSchema = new mongoose.Schema({
     seats:{ 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Seat',
+    },
+    cinemaComplex: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CinemaComplex',
     }
+}, {
+    collection: 'auditoriums',
 });
 
-const Auditorium = mongoose.model('Auditorium', auditoriumSchema);
+const Auditorium = mongoose.model('auditorium', auditoriumSchema);
 
 export default Auditorium;
 

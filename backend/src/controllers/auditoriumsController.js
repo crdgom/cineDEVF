@@ -1,16 +1,24 @@
-import Auditorium from '../models/auditoriumsModel.js';
-import Seat from '../models/seatsModel.js';
+import Auditorium from '../models/auditoriumsModels.js';
+import Seat from '../models/seatsModels.js';
+import CinemaComplex from '../models/cinemaComplexModels.js';
 
 export const createAuditorium = async (req, res) => {
   try {
-    const { name, capacidad: capacity } = req.body;
+    const { name, capacity, cinemaComplexName } = req.body;
 
     // Verificar que la capacidad esté entre 100 y 500
     if (capacity < 100 || capacity > 500) {
-      return res.status(400).json({ message: 'we do not have auditoriums with less than 100 seats or more than 500 seats,\n enter the actual number of seats in the auditorium between 100 and 500.' });
+      return res.status(400).json({ message: 'We do not have auditoriums with less than 100 seats or more than 500 seats. Please enter a capacity between 100 and 500.' });
     }
 
-    const auditorium = await Auditorium.create({ name, capacity: capacity });
+    // Buscar el complejo de cine por el nombre
+    const cinemaComplex = await CinemaComplex.findOne({ complex_name: cinemaComplexName });
+
+    if (!cinemaComplex) {
+      return res.status(404).json({ message: 'Cinema complex not found. Please provide a valid cinema complex name.' });
+    }
+
+    const auditorium = await Auditorium.create({ name, capacity, cinemaComplex: cinemaComplex._id });
 
     // Generar los asientos automáticamente
     const seats = [];
@@ -20,7 +28,7 @@ export const createAuditorium = async (req, res) => {
           seat_number: seat_number,
           seat_row: String.fromCharCode(65 + row - 1), // Convertir número de fila a letra (A, B, C, ...)
           availability: true,
-          auditorium: auditorium._id, // Asociar los asientos a la sala creada
+          auditorium: auditorium._id, // Asociar los asientos al auditorio creado
         });
       }
     }
@@ -32,3 +40,4 @@ export const createAuditorium = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
