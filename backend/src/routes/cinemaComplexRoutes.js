@@ -1,10 +1,11 @@
 import { Router } from 'express';
+import { getCinemaComplexes } from '../controllers/cinemaComplexController.js';
 
 const router = Router();
 
 // * Endpoints for cinema complex (CRUD) operations (getCinemaComplexes, getCinemaComplex, createCinemaComplex, updateCinemaComplex, deleteCinemaComplex)
 
-router.get('/api/v1/getComplexes');
+router.get('/api/v1/getComplexes', getCinemaComplexes);
 router.get('/api/v1/getComplex');
 router.post('/api/v1/createComplex');
 router.put('/api/v1/updateComplex');

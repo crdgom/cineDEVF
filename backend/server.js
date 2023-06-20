@@ -1,6 +1,8 @@
 import express from "express";
 import helmet from "helmet";
+import { execute } from "./src/config/db.js";
 import administratorsRoutes from "./src/routes/administratorsRoutes.js";
+import cinemaComplexRoutes from "./src/routes/cinemaComplexRoutes.js";
 
 
 async function server(){
@@ -12,6 +14,8 @@ async function server(){
         app.disable("x-powered-by");
 
         app.use(administratorsRoutes);
+        app.use(cinemaComplexRoutes);
+        execute();
 
         app.listen(3000, () => {
              console.log(`
