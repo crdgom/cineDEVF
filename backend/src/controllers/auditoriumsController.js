@@ -2,6 +2,29 @@ import Auditorium from '../models/auditoriumsModels.js';
 import Seat from '../models/seatsModels.js';
 import CinemaComplex from '../models/cinemaComplexModels.js';
 
+export const getAuditoriums = async (req, res) => {
+  try {
+    const auditoriums = await Auditorium.find();
+    res.status(200).json(auditoriums);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+export const getAuditorium = async (req, res) => {
+  const { id } = req.query;
+  try {
+    if (!id) {
+      res.status(400).json({ message: 'Missing auditorium id' });
+    } else {
+      const auditorium = await Auditorium.findById(id);
+      res.status(200).json(auditorium);
+    }
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
 export const createAuditorium = async (req, res) => {
   try {
     const { name, capacity, cinemaComplexName } = req.body;
@@ -35,7 +58,82 @@ export const createAuditorium = async (req, res) => {
 
     await Seat.create(seats);
 
-    res.status(201).json({ message: 'The auditorium has been successfully created.' });
+    res.status(201).json({ message: 'The auditorium has been successfully created.', auditorium});
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+export const updateAuditorium = async (req, res) => {
+  const { id } = req.query;
+
+  try {
+    if (!id) {
+      return res.status(400).json({ message: 'Missing auditorium id' });
+    }
+
+    const auditorium = await Auditorium.findById(id);
+    if (!auditorium) {
+      return res.status(404).json({ message: 'Auditorium not found' });
+    }
+
+    // Actualizar solo los parámetros que se recibieron en la query
+    if (req.query.name) {
+      auditorium.name = req.query.name;
+    }
+    if (req.query.capacity) {
+      auditorium.capacity = req.query.capacity;
+    }
+    if (req.query.cinemaComplex) {
+      auditorium.cinemaComplex = req.query.cinemaComplex;
+    }
+
+    const updatedAuditorium = await auditorium.save();
+    res.status(200).json(updatedAuditorium);
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+export const deleteAuditorium = async (req, res) => {
+  const { id } = req.query;
+
+  try {
+
+    if (!id) {
+      return res.status(400).json({ message: 'Missing auditorium id' });
+    }
+
+    const auditorium = await Auditorium.findById(id);
+    if (!auditorium) {
+      return res.status(404).json({ message: 'Auditorium not found' });
+    }
+
+    await auditorium.remove();
+    res.status(200).json({ message: 'Auditorium deleted successfully' });
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+export const getAuditoriumsByCinemaComplex = async (req, res) => {
+  const { cinemaComplexName } = req.query;
+
+  try {
+    if (!cinemaComplexName) {
+      return res.status(400).json({ message: 'Missing cinema complex name' });
+    }
+
+    const cinemaComplex = await CinemaComplex.findOne({ complex_name: cinemaComplexName });
+
+    if (!cinemaComplex) {
+      return res.status(404).json({ message: 'Cinema complex not found. Please provide a valid cinema complex name.' });
+    }
+
+    const auditoriums = await Auditorium.find({ cinemaComplex: cinemaComplex._id });
+    res.status(200).json(auditoriums);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
