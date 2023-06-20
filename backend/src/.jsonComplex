@@ -1,0 +1,132 @@
+[
+  {
+    "complex_name": "CineCity",
+    "complex_number": 1,
+    "auditoriums": 5,
+    "address": {
+      "street": "Avenida Principal",
+      "exterior_number": "123",
+      "postal_code": "12345",
+      "city": "Ciudad de México",
+      "district": "Centro",
+      "zone": "Cuauhtémoc"
+    }
+  },
+  {
+    "complex_name": "CineMax",
+    "complex_number": 2,
+    "auditoriums": 8,
+    "address": {
+      "street": "street 2",
+      "exterior_number": "456",
+      "postal_code": "67890",
+      "city": "Guadalajara",
+      "district": "Zona Centro",
+      "zone": "Centro"
+    }
+  },
+  {
+    "complex_name": "CineParadise",
+    "complex_number": 3,
+    "auditoriums": 6,
+    "address": {
+      "street": "Avenida Libertad",
+      "exterior_number": "789",
+      "postal_code": "54321",
+      "city": "Monterrey",
+      "district": "Las Palmas",
+      "zone": "Centro"
+    }
+  },
+  {
+    "complex_name": "CineStar",
+    "complex_number": 4,
+    "auditoriums": 4,
+    "address": {
+      "street": "street Principal",
+      "exterior_number": "321",
+      "postal_code": "98765",
+      "city": "Puebla",
+      "district": "La Paz",
+      "zone": "Centro"
+    }
+  },
+  {
+    "complex_name": "CineXtreme",
+    "complex_number": 5,
+    "auditoriums": 7,
+    "address": {
+      "street": "Avenida Juárez",
+      "exterior_number": "567",
+      "postal_code": "13579",
+      "city": "Tijuana",
+      "district": "Centro",
+      "zone": "Centro"
+    }
+  },
+  {
+    "complex_name": "CineWorld",
+    "complex_number": 6,
+    "auditoriums": 3,
+    "address": {
+      "street": "Avenida Revolución",
+      "exterior_number": "890",
+      "postal_code": "24680",
+      "city": "Mérida",
+      "district": "Colón",
+      "zone": "Centro"
+    }
+  },
+  {
+    "complex_name": "CinePlus",
+    "complex_number": 7,
+    "auditoriums": 5,
+    "address": {
+      "street": "street Principal",
+      "exterior_number": "753",
+      "postal_code": "80246",
+      "city": "Cancún",
+      "district": "Centro",
+      "zone": "Centro"
+    }
+  },
+  {
+    "complex_name": "CineMagic",
+    "complex_number": 8,
+    "auditoriums": 4,
+    "address": {
+      "street": "Avenida Reforma",
+      "exterior_number": "246",
+      "postal_code": "46321",
+      "city": "Acapulco",
+      "district": "Diamante",
+      "zone": "Centro"
+    }
+  },
+  {
+    "complex_name": "CineMotion",
+    "complex_number": 9,
+    "auditoriums": 6,
+    "address": {
+      "street": "street Principal",
+      "exterior_number": "982",
+      "postal_code": "75263",
+      "city": "Veracruz",
+      "district": "Boca del Río",
+      "zone": "Centro"
+    }
+  },
+  {
+    "complex_name": "CineFiesta",
+    "complex_number": 10,
+    "auditoriums": 3,
+    "address": {
+      "street": "Avenida Hidalgo",
+      "exterior_number": "567",
+      "postal_code": "38972",
+      "city": "Querétaro",
+      "district": "Centro",
+      "zone": "Centro"
+    }
+  }
+]

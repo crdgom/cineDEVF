@@ -1,0 +1,122 @@
+[
+  {
+    "first_name": "Admin1",
+    "last_name": "Test1",
+    "user_name": "admin1",
+    "DNI": "12345678",
+    "employee_number": 1,
+    "email": "admin1@carlosgrandcinemas.com",
+    "password": "password1",
+    "phone_number": "1234567890",
+    "rol": "admin",
+    "at_complex": "612a3a482d94a18fd5c5e0b0"
+  },
+  {
+    "first_name": "Admin2",
+    "last_name": "Test2",
+    "user_name": "admin2",
+    "DNI": "23456789",
+    "employee_number": 2,
+    "email": "admin2@carlosgrandcinemas.com",
+    "password": "password2",
+    "phone_number": "1234567890",
+    "rol": "admin",
+    "at_complex": "612a3a482d94a18fd5c5e0b0"
+  },
+  {
+    "first_name": "Admin3",
+    "last_name": "Test3",
+    "user_name": "admin3",
+    "DNI": "34567890",
+    "employee_number": 3,
+    "email": "admin3@carlosgrandcinemas.com",
+    "password": "password3",
+    "phone_number": "1234567890",
+    "rol": "admin",
+    "at_complex": "612a3a482d94a18fd5c5e0b0"
+  },
+  {
+    "first_name": "Admin4",
+    "last_name": "Test4",
+    "user_name": "admin4",
+    "DNI": "45678901",
+    "employee_number": 4,
+    "email": "admin4@carlosgrandcinemas.com",
+    "password": "password4",
+    "phone_number": "1234567890",
+    "rol": "admin",
+    "at_complex": "612a3a482d94a18fd5c5e0b0"
+  },
+  {
+    "first_name": "Admin5",
+    "last_name": "Test5",
+    "user_name": "admin5",
+    "DNI": "56789012",
+    "employee_number": 5,
+    "email": "admin5@carlosgrandcinemas.com",
+    "password": "password5",
+    "phone_number": "1234567890",
+    "rol": "admin",
+    "at_complex": "612a3a482d94a18fd5c5e0b0"
+  },
+  {
+    "first_name": "Admin6",
+    "last_name": "Test6",
+    "user_name": "admin6",
+    "DNI": "67890123",
+    "employee_number": 6,
+    "email": "admin6@carlosgrandcinemas.com",
+    "password": "password6",
+    "phone_number": "1234567890",
+    "rol": "admin",
+    "at_complex": "612a3a482d94a18fd5c5e0b0"
+  },
+  {
+    "first_name": "Admin7",
+    "last_name": "Test7",
+    "user_name": "admin7",
+    "DNI": "78901234",
+    "employee_number": 7,
+    "email": "admin7@carlosgrandcinemas.com",
+    "password": "password7",
+    "phone_number": "1234567890",
+    "rol": "admin",
+    "at_complex": "612a3a482d94a18fd5c5e0b0"
+  },
+  {
+    "first_name": "Admin8",
+    "last_name": "Test8",
+    "user_name": "admin8",
+    "DNI": "89012345",
+    "employee_number": 8,
+    "email": "admin8@carlosgrandcinemas.com",
+    "password": "password8",
+    "phone_number": "1234567890",
+    "rol": "admin",
+    "at_complex": "612a3a482d94a18fd5c5e0b0"
+  },
+  {
+    "first_name": "Admin9",
+    "last_name": "Test9",
+    "user_name": "admin9",
+    "DNI": "90123456",
+    "employee_number": 9,
+    "email": "admin9@carlosgrandcinemas.com",
+    "password": "password9",
+    "phone_number": "1234567890",
+    "rol": "admin",
+    "at_complex": "612a3a482d94a18fd5c5e0b0"
+  },
+  {
+    "first_name": "Admin10",
+    "last_name": "Test10",
+    "user_name": "admin10",
+    "DNI": "01234567",
+    "employee_number": 10,
+    "email": "admin10@carlosgrandcinemas.com",
+    "password": "password10",
+    "phone_number": "1234567890",
+    "rol": "admin",
+    "at_complex": "612a3a482d94a18fd5c5e0b0"
+  }
+]

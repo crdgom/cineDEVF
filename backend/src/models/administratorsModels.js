@@ -1,6 +1,6 @@
 import mongoose from'mongoose';
 
-export const administratorSchema = new mongoose.Schema({
+const administratorSchema = new mongoose.Schema({
     first_name: {
         type: String,
         required: true,
@@ -40,9 +40,8 @@ export const administratorSchema = new mongoose.Schema({
         lowercase: true,
         unique: true,
         validate: function (value) {
-            const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            const emailRegex = /^([\w-\.]+@carlosgrandcinemas+\.com)$/;
             return emailRegex.test(value);
-
         }
     },
     password: {
@@ -73,11 +72,29 @@ export const administratorSchema = new mongoose.Schema({
         enum: ['active', 'inactive'],
         default: 'active'
     },
+    at_complex: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Complex',
+    },
     created_at: {
         type: Date,
         default: Date.now
     },
     updated_at: {
-        type: Date.now
+        type: Date,
+        default: Date.now,
     }
 });
+
+export const encryptPassword = async (password) => {
+    const salt = await bcrypt.genSalt(10);
+    return await bcrypt.hash(password, salt);
+}
+
+export const comparePassword = async (userPassword, receivedPassword) => {
+    return await bcrypt.compare(userPassword, receivedPassword);
+}
+
+const Administrator = mongoose.model('administrator', administratorSchema);
+
+export default Administrator;
