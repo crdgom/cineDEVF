@@ -15,11 +15,6 @@ const isAdmin = (req, res, next) => {
     // Verificar y decodificar el token
     const decodedToken = Jwt.verify(token, process.env.ADMINS_SECRET);
 
-    console.log(token)
-    console.log('---- decodedToken ----')
-    console.log(decodedToken);
-    console.log(decodedToken.rol)
-
     // Verificar si el rol del usuario es 'admin'
     if (decodedToken.rol === 'admin') {
       // El usuario es administrador, permitir el acceso a la ruta

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getAdministrators, getAdministrator, createAdministrator, updateAdministrator, deleteAdministrator, login } from '../controllers/administratorsController.js';
-import isAdmin from '../middlewares/administratorsMiddelware.js';
+import isAdmin from '../middlewares/administratorsMiddleware.js';
 const router = Router();
 
 // * Endpoints for Administrators (CRUD) operations (getAdmins, getAdmin, createAdministrator, updateAdmin, deleteAdmin)
