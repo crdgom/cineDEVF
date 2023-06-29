@@ -8,10 +8,10 @@ const router = Router();
 // * Endpoints for auditoriums (CRUD) operations (getAuditoriums, getAuditorium, createAuditorium, updateAuditorium, deleteAuditorium)
 
 router.get('/api/v1/getAuditoriums', isEmployee, getAuditoriums);
-router.get('/api/v1/getAuditorium', isEmployee,  getAuditorium);
-router.get('/api/v1/getAuditoriumsByCinemaComplex', isEmployee, getAuditoriumsByCinemaComplex);
+router.get('/api/v1/getAuditorium/:id', isEmployee,  getAuditorium);
+router.get('/api/v1/getAuditoriumsByCinemaComplex/:cinemaComplexName', isEmployee, getAuditoriumsByCinemaComplex);
 router.post('/api/v1/createAuditorium', isAdmin,  createAuditorium);
-router.put('/api/v1/updateAuditorium', isAdmin,  updateAuditorium);
-router.delete('/api/v1/deleteAuditorium', isAdmin,  deleteAuditorium);
+router.put('/api/v1/updateAuditorium/:id', isAdmin,  updateAuditorium);
+router.delete('/api/v1/deleteAuditorium/:id', isAdmin,  deleteAuditorium);
 
 export default router;

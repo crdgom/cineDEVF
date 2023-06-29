@@ -12,7 +12,7 @@ export const getAuditoriums = async (req, res) => {
 }
 
 export const getAuditorium = async (req, res) => {
-  const { id } = req.query;
+  const { id } = req.params;
   try {
     if (!id) {
       res.status(400).json({ message: 'Missing auditorium id' });
@@ -65,7 +65,7 @@ export const createAuditorium = async (req, res) => {
 }
 
 export const updateAuditorium = async (req, res) => {
-  const { id } = req.query;
+  const { id } = req.params;
 
   try {
     if (!id) {
@@ -78,14 +78,14 @@ export const updateAuditorium = async (req, res) => {
     }
 
     // Actualizar solo los parámetros que se recibieron en la query
-    if (req.query.name) {
-      auditorium.name = req.query.name;
+    if (req.body.name) {
+      auditorium.name = req.body.name;
     }
-    if (req.query.capacity) {
-      auditorium.capacity = req.query.capacity;
+    if (req.body.capacity) {
+      auditorium.capacity = req.body.capacity;
     }
-    if (req.query.cinemaComplex) {
-      auditorium.cinemaComplex = req.query.cinemaComplex;
+    if (req.body.cinemaComplex) {
+      auditorium.cinemaComplex = req.body.cinemaComplex;
     }
 
     const updatedAuditorium = await auditorium.save();
@@ -97,7 +97,7 @@ export const updateAuditorium = async (req, res) => {
 }
 
 export const deleteAuditorium = async (req, res) => {
-  const { id } = req.query;
+  const { id } = req.params;
 
   try {
 
@@ -119,7 +119,7 @@ export const deleteAuditorium = async (req, res) => {
 }
 
 export const getAuditoriumsByCinemaComplex = async (req, res) => {
-  const { cinemaComplexName } = req.query;
+  const { cinemaComplexName } = req.params;
 
   try {
     if (!cinemaComplexName) {
