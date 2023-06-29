@@ -1,4 +1,6 @@
 import bcrypt from 'bcrypt';
+import Jwt from 'jsonwebtoken';
+import 'dotenv/config.js'
 import Administrator from '../models/administratorsModels.js';
 import Complex from '../models/cinemaComplexModels.js';
 
@@ -136,3 +138,37 @@ export const deleteAdministrator = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+// Iniciar sesión
+
+export const login = async (req, res) => {
+
+  const userFound = await Administrator.findOne({ email: req.body.email }).exec();
+  console.log(process.env.ADMINS_SECRET)
+  if (!userFound) {
+    return res.status(400).json({ message: 'The email does not exist' });
+  }
+
+  if (userFound && bcrypt.compareSync(req.body.password, userFound.password)) {
+    const token = Jwt.sign(
+      {
+        _id: userFound._id,
+        first_name: userFound.first_name,
+        last_name: userFound.last_name,
+        user_name: userFound.user_name,
+        employee_number: userFound.employee_number,
+        rol: userFound.rol,
+        at_complex: userFound.at_complex,
+      },
+      process.env.ADMINS_SECRET,
+      {
+        expiresIn: '5m',
+      }
+    );
+
+    res.header('Authorization', `{'Bearer': '${token}'}`);
+
+    return res.status(200).json({ token });
+  }
+}

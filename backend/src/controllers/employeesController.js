@@ -1,4 +1,6 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import 'dotenv/config.js'
 import Employee from '../models/employeesModels.js';
 import Complex from '../models/cinemaComplexModels.js';
 
@@ -136,3 +138,34 @@ export const deleteEmployee = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Iniciar sesión
+
+export const login = async (req, res) => {
+
+  const userFound = await Employee.findOne({ email: req.body.email }).exec();
+
+  if (!userFound) {
+    return res.status(400).json({ message: 'The email does not exist' });
+  }
+
+  if (userFound && bcrypt.compareSync(req.body.password, userFound.password)) {
+    const token = jwt.sign(
+      {
+        _id: userFound._id,
+        first_name: userFound.first_name,
+        last_name: userFound.last_name,
+        user_name: userFound.user_name,
+        employee_number: userFound.employee_number,
+        rol: userFound.rol,
+        at_complex: userFound.at_complex,
+      },
+      process.env.ADMINS_SECRET+process.env.ADMINS_AUTH,
+      {
+        expiresIn: '5m',
+      }
+    );
+
+    return res.status(200).json({ token });
+  }
+}
