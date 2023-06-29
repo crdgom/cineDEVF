@@ -24,10 +24,6 @@ const administratorSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        validate: function (value) {
-            const dniRegex = /^\d{8}(?:[-\s]\d{4})?$/;
-            return dniRegex.test(value);
-        }
     },
     employee_number: {
         type: Number,
@@ -47,10 +43,6 @@ const administratorSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        validate: function (value) {
-            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-            return passwordRegex.test(value);
-        }
     },
     phone_number: {
         type: String,

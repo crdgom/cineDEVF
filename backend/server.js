@@ -4,6 +4,7 @@ import { execute } from "./src/config/db.js";
 import administratorsRoutes from "./src/routes/administratorsRoutes.js";
 import cinemaComplexRoutes from "./src/routes/cinemaComplexRoutes.js";
 import auditoriumsRoutes from "./src/routes/auditoriumsRoutes.js";
+import employeesRoutes from "./src/routes/employeesRoutes.js";
 
 
 async function server(){
@@ -17,6 +18,7 @@ async function server(){
         app.use(administratorsRoutes);
         app.use(cinemaComplexRoutes);
         app.use(auditoriumsRoutes);
+        app.use(employeesRoutes);
         execute();
 
         app.listen(3000, () => {

@@ -1,11 +1,3 @@
-/* export const getAdmin = async (req, res) => {
-  try {
-    const { id, name } = req.query;
-    res.status(200).json({ id, name });
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-}; */
 import bcrypt from 'bcrypt';
 import Administrator from '../models/administratorsModels.js';
 import Complex from '../models/cinemaComplexModels.js';
@@ -21,7 +13,7 @@ export const getAdministrators = async (req, res) => {
 };
 
 // Obtener un administrador por su ID
-export const obtenerAdministrador = async (req, res) => {
+export const getAdministrator = async (req, res) => {
   try {
     const { id } = req.params;
     const administrator = await Administrator.findById(id);
@@ -38,19 +30,17 @@ export const obtenerAdministrador = async (req, res) => {
 
 // Crear un administrador
 export const createAdministrator = async (req, res) => {
-
-  // validar que el complejo exista en la base de datos y recuperarlo por el nombre del complejo para hacer la relación
-
+  const { first_name, last_name, user_name, DNI, employee_number, email, password, phone_number, rol } = req.body;
   const { at_complex } = req.body;
-  const complex = await Complex.findOne({ name: at_complex }).exec;
-
+  const complex = await Complex.findOne({ complex_name: at_complex }).exec();
   try {
-    const complex = await Complex.findOne({ name: at_complex }).exec();
+    
+    console.log(complex);
     if (complex) {
       const administrator = new Administrator({
         at_complex: {
           _id: complex._id,
-          name: complex.name,
+          complex_name: complex.name,
         },
         first_name,
         last_name,
@@ -58,7 +48,7 @@ export const createAdministrator = async (req, res) => {
         DNI,
         employee_number,
         email,
-        password,
+        password: bcrypt.hashSync(password, 10),
         phone_number,
         rol,
       });
@@ -78,7 +68,7 @@ export const createAdministrator = async (req, res) => {
             rol,
             at_complex: {
               _id: at_complex._id,
-              name: at_complex.name,
+              complex_name: at_complex.name,
             }
           });
         })
@@ -91,9 +81,45 @@ export const createAdministrator = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-  
-
 };
+
+
+// Actualizar un administrador por su ID
+export const updateAdministrator = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { at_complex, first_name, last_name, user_name, DNI, employee_number, email, phone_number, rol } = req.body;
+    const complex = await Complex.findOne({ name: at_complex }).exec();
+
+    if (complex) {
+      const administrator = await Administrator.findByIdAndUpdate(id, {
+        at_complex: {
+          _id: complex._id,
+          name: complex.name,
+        },
+        first_name,
+        last_name,
+        user_name,
+        DNI,
+        employee_number,
+        email,
+        phone_number,
+        rol,
+      }, { new: true });
+
+      if (!administrator) {
+        return res.status(404).json({ message: 'We cannot find the administrator you entered' });
+      }
+
+      res.status(200).json(administrator);
+    } else {
+      res.status(404).json({ message: 'Complex not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
 // Borrar un administrador por su ID
 export const deleteAdministrator = async (req, res) => {

@@ -1,4 +1,5 @@
 import CinemaComplex from "../models/cinemaComplexModels.js";
+import Auditorium from "../models/auditoriumsModels.js";
 
 export const getCinemaComplexes = async (req, res) => {
     try{
@@ -14,7 +15,7 @@ export const getCinemaComplex = async (req, res) => {
     try{
         if(!id){
             res.status(400).json({message: "Missing cinema complex id"});
-        }else{
+        }else{ 
             const cinemaComplex = await CinemaComplex.findById(id);
         res.status(200).json(cinemaComplex);
         }
@@ -51,6 +52,7 @@ export const createCinemaComplex = async (req, res) =>{
 
 export const updateCinemaComplex = async (req, res) => {
     const { id } = req.query;
+    const auditoriums = await Auditoriums.find({complex_id: id}).length;
 
     try {
         if (!id) {
@@ -70,8 +72,12 @@ export const updateCinemaComplex = async (req, res) => {
             cinemaComplex.complex_number = req.query.complex_number;
         }
         if (req.query.auditoriums) {
-            cinemaComplex.auditoriums = req.query.auditoriums;
+      cinemaComplex.auditoriums = req.query.auditoriums;
         }
+
+    // Actualizar automáticamente el número de salas
+        const auditoriumCount = await Auditorium.countDocuments({ cinemaComplex: id });
+        cinemaComplex.auditoriums = auditoriumCount;
         if (req.query.street) {
             cinemaComplex.address.street = req.query.street;
         }
