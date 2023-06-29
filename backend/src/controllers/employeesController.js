@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import Jwt from 'jsonwebtoken';
 import 'dotenv/config.js'
 import Employee from '../models/employeesModels.js';
 import Complex from '../models/cinemaComplexModels.js';
@@ -150,7 +150,7 @@ export const login = async (req, res) => {
   }
 
   if (userFound && bcrypt.compareSync(req.body.password, userFound.password)) {
-    const token = jwt.sign(
+    const token = Jwt.sign(
       {
         _id: userFound._id,
         first_name: userFound.first_name,
